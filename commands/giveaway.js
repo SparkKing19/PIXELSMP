@@ -87,12 +87,12 @@ module.exports = {
 
 ────────────────────
 
-➥ React with <a:PARTY_POPPER:1540769035757686945> to enter the giveaway!`
+➥ React with <a:PARTY_POPPER:1540768772749791384> to enter the giveaway!`
             );
 
         const giveawayMsg = await channel.send({ embeds: [giveawayEmbed] });
         
-        await giveawayMsg.react('<a:PARTY_POPPER:1540769035757686945>').catch(async () => {
+        await giveawayMsg.react('<a:PARTY_POPPER:1540768772749791384>').catch(async () => {
             await giveawayMsg.react('🎉');
         });
 
