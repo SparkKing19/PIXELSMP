@@ -78,7 +78,7 @@ module.exports = {
         const giveawayEmbed = new EmbedBuilder()
             .setColor('#5865F2')
             .setDescription(
-`<a:GIFT_BOX:1540171626232942593> GIVEAWAY STARTED <a:GIFT_BOX:1540171626232942593>
+`<a:GIFT_BOX:1540768962319491153> GIVEAWAY STARTED <a:GIFT_BOX:1540768962319491153>
 
 ⟢ Hosted By    : <@${interaction.user.id}>
 ⟢ Reward       : ${reward}
@@ -87,12 +87,12 @@ module.exports = {
 
 ────────────────────
 
-➥ React with <a:PARTY_POPPER:1540171562156822660> to enter the giveaway!`
+➥ React with <a:PARTY_POPPER:1540769035757686945> to enter the giveaway!`
             );
 
         const giveawayMsg = await channel.send({ embeds: [giveawayEmbed] });
         
-        await giveawayMsg.react('<a:PARTY_POPPER:1540171562156822660>').catch(async () => {
+        await giveawayMsg.react('<a:PARTY_POPPER:1540769035757686945>').catch(async () => {
             await giveawayMsg.react('🎉');
         });
 
