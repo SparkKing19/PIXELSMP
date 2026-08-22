@@ -49,14 +49,14 @@ ${winnersText}
 
 ────────────────────
 
-<a:POPPER:1540768772749791384> Congratulations to all the winners!`
+<a:POPPER:1540769035757686945> Congratulations to all the winners!`
         );
 
     await message.edit({ embeds: [endedEmbed] }).catch(console.error);
 
     if (winners.length > 0) {
         await channel.send({ 
-            content: `<a:POPPER:1540768772749791384> Congratulations ${winners.map(w => `<@${w}>`).join(', ')}! You won **${g.reward}**!` 
+            content: `<a:POPPER:1540769035757686945> Congratulations ${winners.map(w => `<@${w}>`).join(', ')}! You won **${g.reward}**!` 
         });
     } else {
         await channel.send({ content: `⚠️ Giveaway for **${g.reward}** ended with no valid entries.` });
