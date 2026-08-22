@@ -37,26 +37,26 @@ async function endGiveaway(client, g) {
     const endedEmbed = new EmbedBuilder()
         .setColor('#ED4245')
         .setDescription(
-`<a:GIFT_BOX:1540171626232942593> GIVEAWAY ENDED <a:GIFT_BOX:1540171626232942593>
+`<a:GIFT_BOX:1540768962319491153> GIVEAWAY ENDED <a:GIFT_BOX:1540768962319491153>
 
 ⟢ Reward       : ${g.reward}
 ⟢ Total Winners: ${g.winnerCount}
 
 ────────────────────
 
-<a:TROPHY:1540171629383000184> **WINNERS**
+<a:TROPHY:1540769081962012692> **WINNERS**
 ${winnersText}
 
 ────────────────────
 
-<a:POPPER:1540171624228069416> Congratulations to all the winners!`
+<a:POPPER:1540768772749791384> Congratulations to all the winners!`
         );
 
     await message.edit({ embeds: [endedEmbed] }).catch(console.error);
 
     if (winners.length > 0) {
         await channel.send({ 
-            content: `<a:POPPER:1540171624228069416> Congratulations ${winners.map(w => `<@${w}>`).join(', ')}! You won **${g.reward}**!` 
+            content: `<a:POPPER:1540768772749791384> Congratulations ${winners.map(w => `<@${w}>`).join(', ')}! You won **${g.reward}**!` 
         });
     } else {
         await channel.send({ content: `⚠️ Giveaway for **${g.reward}** ended with no valid entries.` });
