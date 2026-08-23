@@ -13,7 +13,7 @@ async function endGiveaway(client, g) {
     const message = await channel.messages.fetch(g.messageId).catch(() => null);
     if (!message) return;
 
-    // Fetch reactions and filter bots
+    // Fetch entries from reactions
     const reaction = message.reactions.cache.get('1540171562156822660') || message.reactions.cache.get('🎉');
     let validUsers = [];
 
@@ -32,25 +32,28 @@ async function endGiveaway(client, g) {
 
     const winnersText = winners.length > 0 
         ? winners.map(w => `▸ <@${w}>`).join('\n') 
-        : '▸ No valid entries found.';
+        : '*No valid entries recorded.*';
 
     const endedEmbed = new EmbedBuilder()
         .setColor('#ED4245')
         .setDescription(
-`<a:GIFT_BOX:1540768962319491153> GIVEAWAY ENDED <a:GIFT_BOX:1540768962319491153>
+`<a:GIFT_BOX:1540171626232942593> **GIVEAWAY ENDED** <a:GIFT_BOX:1540171626232942593>
 
-⟢ Reward       : ${g.reward}
-⟢ Total Winners: ${g.winnerCount}
+⟢ **Prize**          : **${g.reward}**
+⟢ **Total Winner(s)**: **${g.winnerCount}**
+⟢ **Host**           : <@${g.hostId}>
 
-────────────────────
+──────────────────────────
 
-<a:TROPHY:1540769081962012692> **WINNERS**
+<a:TROPHY:1540769081962012692> **WINNER LIST**
 ${winnersText}
 
-────────────────────
+──────────────────────────
 
-<a:POPPER:1540769035757686945> Congratulations to all the winners!`
-        );
+<a:POPPER:1540769035757686945> Congratulations to all victorious participants!`
+        )
+        .setFooter({ text: 'Enterprise Giveaway System • Event Concluded' })
+        .setTimestamp();
 
     await message.edit({ embeds: [endedEmbed] }).catch(console.error);
 
@@ -59,12 +62,11 @@ ${winnersText}
             content: `<a:POPPER:1540769035757686945> Congratulations ${winners.map(w => `<@${w}>`).join(', ')}! You won **${g.reward}**!` 
         });
     } else {
-        await channel.send({ content: `⚠️ Giveaway for **${g.reward}** ended with no valid entries.` });
+        await channel.send({ content: `⚠️ The giveaway for **${g.reward}** has ended, but no eligible participants were found.` });
     }
 }
 
 module.exports = (client) => {
-    // 1-Second check for high-accuracy timing
     setInterval(async () => {
         try {
             const now = new Date();
@@ -74,9 +76,9 @@ module.exports = (client) => {
                 await endGiveaway(client, g);
             }
         } catch (err) {
-            console.error('Giveaway tick error:', err);
+            console.error('Giveaway interval execution error:', err);
         }
     }, 1000);
 
-    console.log('✔ Timezone-Accurate Giveaway handler loaded.');
+    console.log('✔ Professional Giveaway Handler loaded.');
 };
