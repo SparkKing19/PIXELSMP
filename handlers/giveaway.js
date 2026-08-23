@@ -37,7 +37,7 @@ async function endGiveaway(client, g) {
     const endedEmbed = new EmbedBuilder()
         .setColor('#ED4245')
         .setDescription(
-`<a:GIFT_BOX:1540171626232942593> **GIVEAWAY ENDED** <a:GIFT_BOX:1540171626232942593>
+`<a:GIFT_BOX:1540768962319491153> **GIVEAWAY ENDED** <a:GIFT_BOX:1540768962319491153>
 
 ⟢ **Prize**          : **${g.reward}**
 ⟢ **Total Winner(s)**: **${g.winnerCount}**
