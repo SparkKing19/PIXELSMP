@@ -13,14 +13,18 @@ async function endGiveaway(client, g) {
     const message = await channel.messages.fetch(g.messageId).catch(() => null);
     if (!message) return;
 
-    // Fetch entries from reactions
-    const reaction = message.reactions.cache.get('1540171562156822660') || message.reactions.cache.get('🎉');
-    let validUsers = [];
+    // Dynamically collect users from all reactions on the message (excluding bots)
+    const validUsersSet = new Set();
+    const reactions = message.reactions.cache;
 
-    if (reaction) {
-        const users = await reaction.users.fetch();
-        validUsers = users.filter(u => !u.bot).map(u => u.id);
+    for (const reaction of reactions.values()) {
+        const users = await reaction.users.fetch().catch(() => null);
+        if (users) {
+            users.filter(u => !u.bot).forEach(u => validUsersSet.add(u.id));
+        }
     }
+
+    const validUsers = Array.from(validUsersSet);
 
     // Pick Winners
     const winners = [];
